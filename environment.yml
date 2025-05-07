@@ -1,0 +1,14 @@
+name: runge-kutta-sim
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - numpy
+  - scipy
+  - matplotlib
+  - jupyterlab
+  - mkdocs
+  - mkdocs-material
+  - pytest
+  - black
+  - flake8

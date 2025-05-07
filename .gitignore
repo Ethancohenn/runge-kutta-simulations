@@ -1,0 +1,19 @@
+# Byte‑compiled & cache
+__pycache__/
+*.py[cod]
+
+# Jupyter
+.ipynb_checkpoints/
+
+# VSCode settings
+.vscode/
+
+# Conda env folder
+runge-kutta-sim/
+
+# MkDocs build
+site/
+docs/site/
+
+# Test/cache outputs
+.pytest_cache/
