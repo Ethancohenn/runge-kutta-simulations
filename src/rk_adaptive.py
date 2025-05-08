@@ -4,7 +4,7 @@
 """
 
 import numpy as np
-from rk_general import somme
+from .rk_general import somme
 
 def updateRK_pas_adaptatif(y0, h, A, B, C, f, t):
     """

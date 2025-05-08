@@ -7,8 +7,6 @@ dependencies:
   - scipy
   - matplotlib
   - jupyterlab
-  - mkdocs
-  - mkdocs-material
   - pytest
   - black
   - flake8
