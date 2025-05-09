@@ -11,9 +11,5 @@ __pycache__/
 # Conda env folder
 runge-kutta-sim/
 
-# MkDocs build
-site/
-docs/site/
-
 # Test/cache outputs
 .pytest_cache/
