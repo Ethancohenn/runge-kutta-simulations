@@ -35,21 +35,22 @@ def updateRK_pas_adaptatif(y0, h, A, B, C, f, t):
 def rk_adaptive(y0, f, A, B, C, T, h_init, tolerance, max_iter=100000):
     """
     Adaptive-step integrator
-    
+
     Uses updateRK_pas_adaptatif to control local error
-    
+
     Returns
     -------
     Y : list of ndarray
         States at accepted steps (starting from y0, ending at T)
     H : list of float
-        Step sizes that were tried
+        Step sizes accepted at each step.
     """
-    y = y0
-    Y = [y0]
+    y = np.array(y0, dtype=float)
+    Y = [y.copy()]
+    t = 0.0
+    it = 0
     h = h_init
-    H = [h]
-    t, it = 0
+    H = []
 
     while t < T and it < max_iter:
         # adjust final step to land exactly at T
@@ -63,13 +64,13 @@ def rk_adaptive(y0, f, A, B, C, T, h_init, tolerance, max_iter=100000):
             t += h
             y = y_temp
             Y.append(y.copy())
-            # increase step slightly
+            H.append(h)       # record accepted h
+            # increase for next
             h *= 1.2
         else:
             # reject and decrease step
             h /= 2.0
 
-        H.append(h)
         it += 1
 
     # Final adjustment if last t < T
@@ -77,8 +78,9 @@ def rk_adaptive(y0, f, A, B, C, T, h_init, tolerance, max_iter=100000):
         h_last = T - t
         y_temp, err = updateRK_pas_adaptatif(y, h_last, A, B, C, f, t)
         if err < tolerance:
+            t += h_last
             y = y_temp
             Y.append(y.copy())
-        H.append(h_last)
+            H.append(h_last)
 
     return Y, H

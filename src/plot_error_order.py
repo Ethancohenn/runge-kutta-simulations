@@ -51,6 +51,7 @@ def main():
 
     plt.tight_layout()
     plt.savefig('figures/error_order_plot.png', dpi=300)
+    print(f"Saved error order plot to figures/error_order_plot.png")
     plt.show()
 
 if __name__ == "__main__":

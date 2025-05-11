@@ -39,6 +39,7 @@ def main(theta, T, h, method, save_fig=False):
 
     if save_fig:
         plt.savefig('figures/gravity_trajectory.png', dpi=300)
+        print(f"Saved gravity trajectory plot to figures/gravity_trajectory.png")
     plt.show()
 
 
