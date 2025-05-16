@@ -40,3 +40,20 @@ def flight_time_curve(thetas, **kwargs):
     """
     times = np.array([compute_flight_time(theta, **kwargs) for theta in thetas])
     return times
+
+def min_distance_time(theta,
+                      T=3.0,
+                      h=0.001,
+                      target=(4.0, 1.0),
+                      method="Dormand-Prince"):
+    """
+    Integrate trajectory, return the minimum distance to TARGET
+    and the time when that minimum occurs
+    """
+    y0 = np.array([0.0, 0.0, np.cos(theta), np.sin(theta)])
+    times, Y = simulate_fixed_steps(gravite, y0, T=T, h=h, method=method)
+
+    positions = Y[:, :2]
+    dists = np.linalg.norm(positions - target, axis=1)
+    idx_min = np.argmin(dists)
+    return dists[idx_min], times[idx_min]
